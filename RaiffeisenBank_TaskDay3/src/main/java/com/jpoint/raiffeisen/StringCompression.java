@@ -25,22 +25,18 @@ public class StringCompression {
      * @return : compressed string
      */
     public static String stringCompression(String str) {
-        if (str == null) {
-            return null;
-        }
-        if (str.length() == 0) {
-            return "";
+        if (str == null || str.length() == 0) {
+            return str;
         }
         StringBuffer result = new StringBuffer();
         char symbol = str.charAt(0);
-        int count = 1;
-        int size = str.length();
-        for (int i = 1; i < size; i++)	{
-            if (str.charAt(i) == symbol) {
+        int count = 0;
+        for (char ch : str.toCharArray()) {
+            if (ch == symbol) {
                 count++;
             } else {
                 collectResult(symbol, count, result);
-                symbol = str.charAt(i);
+                symbol = ch;
                 count = 1;
             }
         }
