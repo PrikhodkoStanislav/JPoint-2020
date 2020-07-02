@@ -15,7 +15,7 @@ public class PrimeNumbersSolution implements PrimeNumbers {
                 .collect(Collectors.toList());
     }
 
-    boolean isPrime(long number) {
+    private boolean isPrime(long number) {
         return LongStream.rangeClosed(2, (long) Math.sqrt(number))
                 .allMatch(n -> number % n != 0);
     }

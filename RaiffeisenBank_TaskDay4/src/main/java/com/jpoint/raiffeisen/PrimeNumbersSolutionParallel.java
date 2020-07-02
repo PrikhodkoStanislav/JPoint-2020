@@ -7,13 +7,17 @@ import java.util.stream.LongStream;
 /**
  * Prime numbers parallel solution
  */
-public class PrimeNumbersSolutionParallel extends PrimeNumbersSolution {
+public class PrimeNumbersSolutionParallel implements PrimeNumbers {
 
-    @Override
     public List<Long> primeNumbers(long n) {
         return LongStream.rangeClosed(2, n)
                 .parallel()
-                .filter(super::isPrime).boxed()
+                .filter(this::isPrime).boxed()
                 .collect(Collectors.toList());
+    }
+
+    private boolean isPrime(long number) {
+        return LongStream.rangeClosed(2, (long) Math.sqrt(number))
+                .allMatch(n -> number % n != 0);
     }
 }
